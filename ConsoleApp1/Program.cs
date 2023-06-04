@@ -1,22 +1,25 @@
 ﻿using System;
 namespace triangles {
-    class Triangle {
+    class Triangle
+    {
         private double[][] vertices;
-        private double[] sides;
-        private double perimeter;
-        public Triangle(double[][] vertices) {
-            if (vertices.Length != 3) {
+        private double area;
+
+        public Triangle(double[][] vertices)
+        {
+            if (vertices.Length != 3)
+            {
                 throw new ArgumentException("List of vertices should be equal 3.");
             }
             this.vertices = vertices;
-            this.perimeter = TrianglePerimeter(this.vertices);
         }
-        public double TrianglePerimeter (double[][] vertices)
+        public double TriangleArea()
         {
-            double f = 4.5;
-            return f;
+            double area = 0;
+            area = 0.5 * Math.Abs((this.vertices[1][0] - this.vertices[0][0]) * (this.vertices[2][1] - this.vertices[0][1]) - (this.vertices[2][0] - this.vertices[0][0]) * (this.vertices[1][1] - this.vertices[0][1]));
+            return area;
         }
-     }
+    }
     class Program
     {
         static void Main()
@@ -31,6 +34,8 @@ namespace triangles {
             Triangle triangle4 = new Triangle(Triangle4vertices);
             double[][] Triangle5vertices = new double[][] { new double[] { 15, 7 }, new double[] { 11, 12 }, new double[] { 17, 11 } };
             Triangle triangle5 = new Triangle(Triangle5vertices);
+            double wholearea = triangle1.TriangleArea() + triangle2.TriangleArea() + triangle3.TriangleArea() + triangle4.TriangleArea() + triangle5.TriangleArea(); 
+            Console.WriteLine("Area:" + wholearea);
         }
     }
  }
