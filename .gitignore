@@ -2,3 +2,5 @@
 *.sln
 *.json
 *.cache
+*.dll
+*.exe
