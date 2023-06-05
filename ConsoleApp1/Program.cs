@@ -3,7 +3,6 @@ namespace triangles {
     class Triangle
     {
         private double[][] vertices;
-        private double area;
 
         public Triangle(double[][] vertices)
         {
@@ -17,6 +16,7 @@ namespace triangles {
         {
             double area = 0;
             area = 0.5 * Math.Abs((this.vertices[1][0] - this.vertices[0][0]) * (this.vertices[2][1] - this.vertices[0][1]) - (this.vertices[2][0] - this.vertices[0][0]) * (this.vertices[1][1] - this.vertices[0][1]));
+            //Console.WriteLine(area);
             return area;
         }
     }
