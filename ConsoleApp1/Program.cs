@@ -15,6 +15,7 @@ namespace Program {
             Stopwatch stopwatch = new Stopwatch();
             List<Figure> figures = new List<Figure>();
             while (true) {
+                ///Пользователю даётся возможность выбирать из 4 возможных дейтсвий (Добавить фигуру, удалить фигуру, показать фигуры, общая площадь)
                 Console.WriteLine("Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, 4 -- Total Area: ");
                 try
                 {
@@ -118,9 +119,19 @@ namespace Program {
             {
                 return TriangleCreation(Figurevertices);
             }
-            else
+            else 
             {
-                return new Quadrangle(Figurevertices);
+                Quadrangle quadrangle = new Quadrangle(Figurevertices);
+                List<double> sides = quadrangle.Sides();
+                bool SidesEqual = sides.All(x => x == sides[0]);
+                if (SidesEqual)
+                {
+                    return new Square(Figurevertices);
+                }
+                else
+                {
+                    return quadrangle;
+                }
             }
            
         }
