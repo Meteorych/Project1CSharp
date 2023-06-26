@@ -3,10 +3,10 @@
 namespace Points
 {
     
-    class Point
+    class Vertex
     {
         private double[] pointcords;
-        public Point(double[] pointcords)
+        public Vertex(double[] pointcords)
             {
             if (pointcords.Length != 2 && pointcords.Length != 3)
             {
