@@ -1,21 +1,17 @@
-﻿using System;
-
-namespace Points
+﻿namespace Points
 {
     
-    class Vertex
+    class Point
     {
-        private double[] pointcords;
-        public Vertex(double[] pointcords)
+        public Point(double[] pointCords)
             {
-            if (pointcords.Length != 2 && pointcords.Length != 3)
-            {
-                throw new ArgumentException("Amount of coordinates is wrong");
-            }
-            this.pointcords = pointcords;
+
+            Coordinates = pointCords;
+            Dimension = pointCords.Length;
+
         }
-        public double [] Pointcords { get { return pointcords; } }
-        
+        public double [] Coordinates { get ;  }
+        public int Dimension { get; }
     }
 }
 

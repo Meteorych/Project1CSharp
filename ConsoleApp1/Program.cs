@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using Triangles;
 using Figures;
+using Circles;
 using Points;
+using Qudrangles;
 
 namespace Program {
     
@@ -19,7 +21,7 @@ namespace Program {
                 Console.WriteLine("Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, 4 -- Total Area: ");
                 try
                 {
-                    var choice = Int32.Parse(Console.ReadLine());
+                    var choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
                         case 1:
@@ -27,7 +29,7 @@ namespace Program {
                             continue;
                         case 2:
                             Console.WriteLine("Input the number of figure you want to delete: ");
-                            int num = Int32.Parse(Console.ReadLine());
+                            int num = Convert.ToInt32(Console.ReadLine());
                             figures.RemoveAt(num);
                             continue;
                         case 3:
@@ -35,23 +37,23 @@ namespace Program {
                             {
                                 if (f is Triangle)
                                 {
-                                    Console.WriteLine("Traingle with area:" + f.GetArea());
+                                    Console.WriteLine("\nTraingle with area:" + f.GetArea());
                                 }
                                 else if (f is RectangularTriangle)
                                 {
-                                    Console.WriteLine("Rectangular triangle with area: " + f.GetArea());
+                                    Console.WriteLine("\nRectangular triangle with area: " + f.GetArea());
                                 }
                                 else if (f is Quadrangle)
                                 {
-                                    Console.WriteLine("Quadrangle with area: " + f.GetArea());
+                                    Console.WriteLine("\nQuadrangle with area: " + f.GetArea());
                                 }
                                 else if (f is Circle)
                                 {
-                                    Console.WriteLine("Circle with area: " + f.GetArea());
+                                    Console.WriteLine("\nCircle with area: " + f.GetArea());
                                 }
                                 else if (f is Square)
                                 {
-                                    Console.WriteLine("Square with area: " + f.GetArea());
+                                    Console.WriteLine("\nSquare with area: " + f.GetArea());
                                 }
                             }
                             continue;
@@ -61,8 +63,6 @@ namespace Program {
                             {
                                 area += f.GetArea();
                                 Console.WriteLine(f.GetArea());
-                                Console.Write("Number of rectangular triangles:" + RectangularTriangle.Number_of_rect + "\nNumber of circles: " + Circle.GetNum +
-                                    "\nNumber of quadrangles: " + Quadrangle.GetNum);
                                 Console.WriteLine("Total area:" + area);
                             }
                             continue;
@@ -95,7 +95,7 @@ namespace Program {
                 return null;
             }
             int b = comma.Matches(coordinates).Count + 1;
-            Vertex[] Figurevertices = new Vertex[b];
+            Points.Point[] Figurevertices = new Points.Point[b];
             int index_of_comma = 0;
             for (int i = 0; i < b; i++) 
             {
@@ -103,30 +103,52 @@ namespace Program {
                 index_of_comma = coordinates.IndexOf(",", old_index+1);
                 if (index_of_comma == -1)
                 {
-                    Figurevertices[i] = new Vertex(new double[] { double.Parse(coordinates[coordinates.Length - 2].ToString()), double.Parse(coordinates[coordinates.Length - 1].ToString()) });
+                    Figurevertices[i] = new Points.Point(new double[] { double.Parse(coordinates[coordinates.Length - 2].ToString()), double.Parse(coordinates[coordinates.Length - 1].ToString()) });
                 }
                 else
                 {
-                    Figurevertices[i] = new Vertex(new double[] { double.Parse(coordinates[index_of_comma - 2].ToString()), double.Parse(coordinates[index_of_comma - 1].ToString()) });
+                    Figurevertices[i] = new Points.Point(new double[] { double.Parse(coordinates[index_of_comma - 2].ToString()), double.Parse(coordinates[index_of_comma - 1].ToString()) });
                 }
             }
-            
+            Console.WriteLine("Choose a color for the figure:");
+            Console.WriteLine("1. Red");
+            Console.WriteLine("2. Blue");
+            Console.WriteLine("3. Green");
+
+            Color chosenColor;
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    chosenColor = Color.Red;
+                    break;
+                case 2:
+                    chosenColor = Color.Blue;
+                    break;
+                case 3:
+                    chosenColor = Color.Green;
+                    break;
+                default:
+                    chosenColor = Color.Black;
+                    break;
+            }
             if (comma.Matches(coordinates).Count == 1)
             {
-                return new Circle(Figurevertices);
+                return new Circle(Figurevertices, chosenColor);
             }
             else if (comma.Matches(coordinates).Count == 2)
             {
-                return TriangleCreation(Figurevertices);
+                return TriangleCreation(Figurevertices, chosenColor);
             }
             else 
             {
-                Quadrangle quadrangle = new Quadrangle(Figurevertices);
-                List<double> sides = quadrangle.Sides();
+                Quadrangle quadrangle = new Quadrangle(Figurevertices, chosenColor);
+                List<double> sides = quadrangle.MakingSides();
                 bool SidesEqual = sides.All(x => x == sides[0]);
                 if (SidesEqual)
                 {
-                    return new Square(Figurevertices);
+                    return new Square(Figurevertices, chosenColor);
                 }
                 else
                 {
@@ -136,12 +158,12 @@ namespace Program {
            
         }
 
-        static Triangle TriangleCreation(Vertex[] vertices)
+        static Triangle TriangleCreation(Points.Point[] vertices, Color chosenColor)
         {
-            Triangle triangle = new Triangle(vertices);
+            Triangle triangle = new Triangle(vertices, chosenColor);
             if (IsRectangle(triangle))
             {
-                return new RectangularTriangle(vertices);
+                return new RectangularTriangle(vertices, chosenColor);
             }
             else
             {
