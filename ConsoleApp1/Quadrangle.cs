@@ -17,6 +17,9 @@ namespace Qudrangles
             //Передавать вершины в порядке следования
             this.vertices = vertices;
             this.sides = MakingSides();
+            Pen pen = new Pen(Color.Black, 2);
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+
         }
         public List<double> MakingSides()
         {

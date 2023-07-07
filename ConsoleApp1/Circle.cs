@@ -10,7 +10,7 @@ namespace Circles
         //Переписать под центр/радиус
         public Circle(Points.Point[] vertices, Color color) : base(vertices, color)
         {
-            radius = Convert.ToInt32(string.Concat(vertices[0].Coordinates));
+            radius = Convert.ToInt32(string.Concat(vertices[1].Coordinates));
             center = vertices[0].Coordinates;
         }
 

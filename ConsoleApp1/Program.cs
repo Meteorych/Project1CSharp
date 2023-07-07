@@ -67,8 +67,8 @@ namespace Program {
                             }
                             continue;
                         default:
-                            stopwatch.Stop();
-                            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+                            //stopwatch.Stop();
+                            //Console.WriteLine(stopwatch.ElapsedMilliseconds);
                             break;
                     }
                 }
@@ -76,7 +76,7 @@ namespace Program {
                 {
                     Console.WriteLine("Wrong Symbol!");
                 }
-
+                break;
                 
             }
         
