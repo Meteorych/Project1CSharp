@@ -10,13 +10,17 @@ namespace Actions
 {
     class Action
     {
-        List<Figure> figures;
+        private List<Figure> figures;
+        private bool endProgram;
         public Action(List <Figure> figures) {
             this.figures = figures;
+            endProgram = false;
         }
-        
-                //Пользователю даётся возможность выбирать из 4 возможных дейтсвий (Добавить фигуру, удалить фигуру, показать фигуры, общая площадь)
-        public void Choice()
+
+        public bool EndProgram { get { return endProgram; } }
+
+        //Пользователю даётся возможность выбирать из 4 возможных дейтсвий (Добавить фигуру, удалить фигуру, показать фигуры, общая площадь)
+        public void ActionChoice()
         {
             Console.WriteLine("Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, 4 -- Total Area: ");
             try
@@ -25,7 +29,7 @@ namespace Actions
                 switch (choice)
                 {
                     case 1:
-                        figures.Add(FigureCreating());
+                        FigureCreating();
                         break;
                     case 2:
                         DeletingFigure();
@@ -33,7 +37,7 @@ namespace Actions
                     case 3:
                         foreach (Figure f in figures)
                         {
-                            Console.WriteLine(f.ToString() + f.GetArea().ToString());
+                            Console.WriteLine(f.ToString() + " " + f.GetArea().ToString());
                         }
                         break;
                     case 4:
@@ -45,6 +49,7 @@ namespace Actions
                         Console.WriteLine("Total area:" + area);
                         break;
                     default:
+                        endProgram = true;
                         break;
                 }
             }
@@ -64,40 +69,21 @@ namespace Actions
 
         public Color ColorChoice()
         {
-            int choice = Convert.ToInt32(Console.ReadLine());
-            Color chosenColor;
-            switch (choice)
-            {
-                case 1:
-                    chosenColor = Color.Red;
-                    break;
-                case 2:
-                    chosenColor = Color.Blue;
-                    break;
-                case 3:
-                    chosenColor = Color.Green;
-                    break;
-                default:
-                    chosenColor = Color.Black;
-                    break;
+            Console.WriteLine("Input chosen color: ");
+            try {
+                Color chosenColor = Color.FromName(Console.ReadLine());
+                return chosenColor;
             }
-            return chosenColor;
+            catch (FormatException)
+            {
+                Console.WriteLine("Wrong color!");
+                throw;
+            }
         }
-
-        public Figure FigureCreating()
+        public Points.Point[] VerticeCreation(int numOfVertices, string coordinates)
         {
-            Console.WriteLine("Input coordinates of vertex in format like \"12,24,15\": ");
-            var coordinates = Console.ReadLine();
-            Regex regex = new Regex(@"[^0-9,]");
-            Regex comma = new Regex(@",");
-            if (regex.Matches(coordinates).Count != 0 || (coordinates.Length == 0 || coordinates.Length == 1))
-            {
-                Console.WriteLine("Wrong format of coordinates!");
-                return null;
-            }
-            int numOfVertex = comma.Matches(coordinates).Count + 1;
-            Points.Point[] Figurevertices = new Points.Point[numOfVertex];
-            for (int i = 0; i < numOfVertex; i++)
+            Points.Point[] Figurevertices = new Points.Point[numOfVertices];
+            for (int i = 0; i < numOfVertices; i++)
             {
                 //Разбиваем координаты на список по вершинам, которые они обозначают 
                 string[] listOfCoordinates = coordinates.Split(",");
@@ -106,15 +92,42 @@ namespace Actions
                     Figurevertices[i] = new Points.Point(new double[] { double.Parse(listOfCoordinates[i][0].ToString()), double.Parse(listOfCoordinates[i][1].ToString()) });
                 }
             }
+            return Figurevertices;
+        }
 
+        public int CalcNumOfVertices(string coordinates)
+        {
+            Regex comma = new Regex(@",");
+            int numOfVertices = comma.Matches(coordinates).Count + 1;
+            return numOfVertices;
+        }
+
+        public Figure FigureCreating()
+        {
+            Console.WriteLine("Input coordinates of vertex in format like \"12,24,15\": ");
+            string? coordinates;
+            do
+            {
+                coordinates = Console.ReadLine();
+            } while (string.IsNullOrEmpty(coordinates));
+
+            Regex regex = new Regex(@"[^0-9,]");
+            if (regex.Matches(coordinates).Count != 0 || (coordinates.Length == 0 || coordinates.Length == 1))
+            {
+                throw new FormatException("Wrong Format of coordinates");
+            }
+
+            int numOfVertices = CalcNumOfVertices(coordinates);
+
+            Points.Point[] Figurevertices = VerticeCreation(numOfVertices, coordinates);
 
             Color chosenColor = ColorChoice();
             
-            if (numOfVertex == 2)
+            if (numOfVertices == 2)
             {
                 return new Circle(Figurevertices, chosenColor);
             }
-            else if (numOfVertex == 3)
+            else if (numOfVertices == 3)
             {
                 return TriangleCreation(Figurevertices, chosenColor);
             }
@@ -134,7 +147,7 @@ namespace Actions
             }
         }
 
-        static Triangle TriangleCreation(Points.Point[] vertices, Color chosenColor)
+        public Triangle TriangleCreation(Points.Point[] vertices, Color chosenColor)
         {
             Triangle triangle = new Triangle(vertices, chosenColor);
             Check check = new Check();

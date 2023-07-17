@@ -17,7 +17,11 @@ namespace Program {
             Actions.Action userInterface = new Actions.Action(figures);
             while (true)
             {
-                userInterface.Choice();
+                userInterface.ActionChoice();
+                if (userInterface.EndProgram == true)
+                {
+                    break;
+                }
             }
 
         } 
