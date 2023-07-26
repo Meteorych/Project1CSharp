@@ -4,6 +4,7 @@ using FigureChecks;
 using Qudrangles;
 using Circles;
 using Triangles;
+using UI;
 using System.Text.RegularExpressions;
 namespace Actions
 {
@@ -46,7 +47,7 @@ namespace Actions
             return numOfVertices;
         }
 
-        public Figure FigureCreating()
+        public Figure FigureCreating(Color lineColor, Color fillColor)
         {
             Console.WriteLine("Input coordinates of vertex in format like \"12,24,15\": ");
             string? coordinates;
@@ -65,8 +66,7 @@ namespace Actions
 
             Points.Point[] Figurevertices = VerticeCreation(numOfVertices, coordinates);
 
-            Color lineColor = ColorChoice(true);
-            Color fillColor = ColorChoice(false);
+            
             
             if (numOfVertices == 2)
             {
