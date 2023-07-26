@@ -30,3 +30,7 @@ ConsoleApp1/obj/project.nuget.cache
 *.pdb
 *.dll
 *.cache
+*.json
+*.dll
+*.vsidx
+*.dll
