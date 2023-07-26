@@ -24,26 +24,6 @@ namespace Actions
             return figures;
         }
 
-        public Color ColorChoice(bool typeOfData)
-        {
-            if (typeOfData is true)
-            {
-                Console.WriteLine("Input figure line color: ");
-            }
-            else if (typeOfData is false)
-            {
-                Console.WriteLine("Input figure fill color: ");
-            }
-            try {
-                Color chosenColor = Color.FromName(Console.ReadLine());
-                return chosenColor;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Wrong color!");
-                throw;
-            }
-        }
         public Points.Point[] VerticeCreation(int numOfVertices, string coordinates)
         {
             Points.Point[] Figurevertices = new Points.Point[numOfVertices];
