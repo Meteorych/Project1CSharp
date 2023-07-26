@@ -6,11 +6,14 @@ namespace Figures
     //Родительский класс для всех фигур
     abstract class Figure
     {
-        protected Color color;
-        public Figure(Points.Point[] vertices, Color chosenColor)
+        protected Color lineColor;
+        protected Color fillColor;
+
+        public Figure(Points.Point[] vertices, Color lineColor, Color fillColor)
         {
-          
-            color = chosenColor;
+
+            this.lineColor = lineColor;
+            this.fillColor = fillColor;
         }
         public abstract double GetArea();
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 using Figures;
 
 namespace Qudrangles
@@ -12,7 +8,7 @@ namespace Qudrangles
         private Points.Point[] vertices;
         private List<Double> sides;
         private int numOfSides = 4;
-        public Quadrangle(Points.Point[] vertices, Color color) : base(vertices, color)
+        public Quadrangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             //Передавать вершины в порядке следования
             this.vertices = vertices;
@@ -39,7 +35,7 @@ namespace Qudrangles
     class Square : Quadrangle
     {
 
-        public Square(Points.Point[] vertices, Color color) : base(vertices, color)
+        public Square(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
 
         }

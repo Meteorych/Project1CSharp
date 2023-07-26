@@ -1,5 +1,5 @@
 ﻿using Triangles;
-namespace Checks
+namespace FigureChecks
 {
     class Check
     {

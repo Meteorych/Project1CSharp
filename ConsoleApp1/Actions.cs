@@ -1,7 +1,6 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using Figures;
-using Checks;
+using FigureChecks;
 using Qudrangles;
 using Circles;
 using Triangles;
@@ -11,53 +10,11 @@ namespace Actions
     class Action
     {
         private List<Figure> figures;
-        private bool endProgram;
         public Action(List <Figure> figures) {
             this.figures = figures;
-            endProgram = false;
         }
 
-        public bool EndProgram { get { return endProgram; } }
-
-        //Пользователю даётся возможность выбирать из 4 возможных дейтсвий (Добавить фигуру, удалить фигуру, показать фигуры, общая площадь)
-        public void ActionChoice()
-        {
-            Console.WriteLine("Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, 4 -- Total Area: ");
-            try
-            {
-                var choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
-                {
-                    case 1:
-                        FigureCreating();
-                        break;
-                    case 2:
-                        DeletingFigure();
-                        break;
-                    case 3:
-                        foreach (Figure f in figures)
-                        {
-                            Console.WriteLine(f.ToString() + " " + f.GetArea().ToString());
-                        }
-                        break;
-                    case 4:
-                        double area = 0;
-                        foreach (Figure f in figures)
-                        {
-                            area += f.GetArea();
-                        }
-                        Console.WriteLine("Total area:" + area);
-                        break;
-                    default:
-                        endProgram = true;
-                        break;
-                }
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Wrong Symbol!");
-            }
-        }
+        
 
         public List<Figure> DeletingFigure()
         {
@@ -67,9 +24,16 @@ namespace Actions
             return figures;
         }
 
-        public Color ColorChoice()
+        public Color ColorChoice(bool typeOfData)
         {
-            Console.WriteLine("Input chosen color: ");
+            if (typeOfData is true)
+            {
+                Console.WriteLine("Input figure line color: ");
+            }
+            else if (typeOfData is false)
+            {
+                Console.WriteLine("Input figure fill color: ");
+            }
             try {
                 Color chosenColor = Color.FromName(Console.ReadLine());
                 return chosenColor;
@@ -121,24 +85,25 @@ namespace Actions
 
             Points.Point[] Figurevertices = VerticeCreation(numOfVertices, coordinates);
 
-            Color chosenColor = ColorChoice();
+            Color lineColor = ColorChoice(true);
+            Color fillColor = ColorChoice(false);
             
             if (numOfVertices == 2)
             {
-                return new Circle(Figurevertices, chosenColor);
+                return new Circle(Figurevertices, lineColor, fillColor);
             }
             else if (numOfVertices == 3)
             {
-                return TriangleCreation(Figurevertices, chosenColor);
+                return TriangleCreation(Figurevertices, lineColor, fillColor);
             }
             else
             {
-                Quadrangle quadrangle = new Quadrangle(Figurevertices, chosenColor);
+                Quadrangle quadrangle = new Quadrangle(Figurevertices, lineColor, fillColor);
                 List<double> sides = quadrangle.MakingSides();
                 bool SidesEqual = sides.All(x => x == sides[0]);
                 if (SidesEqual)
                 {
-                    return new Square(Figurevertices, chosenColor);
+                    return new Square(Figurevertices, lineColor, fillColor);
                 }
                 else
                 {
@@ -147,13 +112,13 @@ namespace Actions
             }
         }
 
-        public Triangle TriangleCreation(Points.Point[] vertices, Color chosenColor)
+        public Triangle TriangleCreation(Points.Point[] vertices, Color lineColor, Color fillColor)
         {
-            Triangle triangle = new Triangle(vertices, chosenColor);
+            Triangle triangle = new Triangle(vertices, lineColor, fillColor);
             Check check = new Check();
             if (check.IsRectangle(triangle))
             {
-                return new RectangularTriangle(vertices, chosenColor);
+                return new RectangularTriangle(vertices, lineColor, fillColor);
             }
             else
             {

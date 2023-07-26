@@ -8,7 +8,7 @@ namespace Triangles
         private Points.Point[] vertices;
         private List<double> sides;
         private int numOfSides = 3; 
-        public Triangle(Points.Point[] vertices, Color color) : base(vertices, color) 
+        public Triangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             if (vertices.Length != numOfSides)
             {
@@ -40,7 +40,7 @@ namespace Triangles
     class RectangularTriangle : Triangle
     {
     
-        public RectangularTriangle(Points.Point[] vertices, Color color ) : base(vertices, color) 
+        public RectangularTriangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             
         }
