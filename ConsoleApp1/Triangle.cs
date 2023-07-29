@@ -1,20 +1,22 @@
 ﻿using System.Drawing;
+using System.Text.Json.Serialization;
 using Figures;
 namespace Triangles
 {
     //Создание объекта треугольник с помощью наследуемого класса от родителького класса Figure
     class Triangle : Figure
     {
-        private Points.Point[] vertices;
+        public Points.Point[] Vertices { get; set; }
         private List<double> sides;
         private int numOfSides = 3; 
+
         public Triangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             if (vertices.Length != numOfSides)
             {
                 throw new ArgumentException("List of vertices should be equal 3.");
             }
-            this.vertices = vertices;
+            Vertices = vertices;
             sides = Sides();
 
         }
@@ -30,7 +32,7 @@ namespace Triangles
             }
             return sides;
         }
-        //перегруженная из родительского класса фукнция, вовзращающая площадь треугольника
+        //перегруженная из родительского класса фукнция, возвращающая площадь треугольника
         public override double GetArea()
         {
             sides = Sides();

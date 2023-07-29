@@ -15,8 +15,6 @@ namespace Actions
             this.figures = figures;
         }
 
-        
-
         public List<Figure> DeletingFigure()
         {
             Console.WriteLine("Input the number of figure you want to delete: ");
@@ -65,8 +63,6 @@ namespace Actions
             int numOfVertices = CalcNumOfVertices(coordinates);
 
             Points.Point[] Figurevertices = VerticeCreation(numOfVertices, coordinates);
-
-            
             
             if (numOfVertices == 2)
             {
@@ -104,7 +100,6 @@ namespace Actions
             {
                 return triangle;
             }
-
         }
 
     }

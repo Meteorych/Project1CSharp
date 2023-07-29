@@ -1,8 +1,10 @@
-﻿namespace Points
+﻿using System.Text.Json.Serialization;
+namespace Points
 {
     
     class Point
     {
+
         public Point(double[] pointCords)
            {
 
@@ -10,8 +12,9 @@
             Dimension = pointCords.Length;
 
         }
-        public double [] Coordinates { get ;  }
-        public int Dimension { get; }
+        [JsonPropertyName("Coordinates")]
+        public double [] Coordinates { get; set; }
+        public int Dimension { get; set; }
     }
 }
 
