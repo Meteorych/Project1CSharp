@@ -1,6 +1,5 @@
 ﻿using Figures;
 using UI;
-using JSON;
 using System.Text.Json;
 
 namespace Program {
@@ -10,7 +9,7 @@ namespace Program {
         static void Main()
         {
             //Stopwatch stopwatch = new Stopwatch();
-            string jsonData = File.ReadAllText("FiguresData.json");
+            string jsonData = File.ReadAllText("C:/CSharp and DotNet/Project1/ConsoleApp1/FiguresData.json");
             List<Figure> figures = new List<Figure>();
             if (jsonData.Length > 0)
             {
@@ -22,6 +21,8 @@ namespace Program {
                 userInterface.ActionChoice();
                 if (userInterface.EndProgram == true)
                 {
+                    string jsonString = JsonSerializer.Serialize(figures, new JsonSerializerOptions { WriteIndented = true });
+                    File.WriteAllText("C:/CSharp and DotNet/Project1/ConsoleApp1/FiguresData.json", jsonString);
                     break;
                 }
             }

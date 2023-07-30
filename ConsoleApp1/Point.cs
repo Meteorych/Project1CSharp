@@ -4,16 +4,15 @@ namespace Points
     
     class Point
     {
-
+        [JsonConstructor]
         public Point(double[] pointCords)
-           {
+        {
 
             Coordinates = pointCords;
             Dimension = pointCords.Length;
 
         }
-        [JsonPropertyName("Coordinates")]
-        public double [] Coordinates { get; set; }
+        public double[] Coordinates { get; set; }
         public int Dimension { get; set; }
     }
 }

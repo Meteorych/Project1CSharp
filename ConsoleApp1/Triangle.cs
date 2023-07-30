@@ -6,10 +6,9 @@ namespace Triangles
     //Создание объекта треугольник с помощью наследуемого класса от родителького класса Figure
     class Triangle : Figure
     {
-        public Points.Point[] Vertices { get; set; }
         private List<double> sides;
-        private int numOfSides = 3; 
-
+        private int numOfSides = 3;
+        [JsonConstructor]
         public Triangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             if (vertices.Length != numOfSides)
@@ -28,7 +27,7 @@ namespace Triangles
             for (int i = 0; i < numOfSides; i++)
             {
                 int j = (i + 1) % numOfSides;
-                sides.Add(Math.Sqrt(Math.Pow(this.vertices[j].Coordinates[0] - this.vertices[i].Coordinates[0], 2) + Math.Pow(this.vertices[j].Coordinates[1] - this.vertices[i].Coordinates[1], 2)));
+                sides.Add(Math.Sqrt(Math.Pow(this.Vertices[j].Coordinates[0] - this.Vertices[i].Coordinates[0], 2) + Math.Pow(this.Vertices[j].Coordinates[1] - this.Vertices[i].Coordinates[1], 2)));
             }
             return sides;
         }
@@ -36,7 +35,7 @@ namespace Triangles
         public override double GetArea()
         {
             sides = Sides();
-            return 0.5 * Math.Abs((this.vertices[1].Coordinates[0] - this.vertices[0].Coordinates[0]) * (this.vertices[2].Coordinates[1] - this.vertices[0].Coordinates[1]) - (this.vertices[2].Coordinates[0] - this.vertices[0].Coordinates[0]) * (this.vertices[1].Coordinates[1] - this.vertices[0].Coordinates[1]));
+            return 0.5 * Math.Abs((this.Vertices[1].Coordinates[0] - this.Vertices[0].Coordinates[0]) * (this.Vertices[2].Coordinates[1] - this.Vertices[0].Coordinates[1]) - (this.Vertices[2].Coordinates[0] - this.Vertices[0].Coordinates[0]) * (this.Vertices[1].Coordinates[1] - this.Vertices[0].Coordinates[1]));
         }
     }
     class RectangularTriangle : Triangle

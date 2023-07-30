@@ -29,7 +29,7 @@ namespace UI
                     case 1:
                         Color lineColor = ColorChoice(true);
                         Color fillColor = ColorChoice(false);
-                        action.FigureCreating(lineColor, fillColor);
+                        figures.Add(action.FigureCreating(lineColor, fillColor));
                         break;
                     case 2:
                         action.DeletingFigure();
@@ -37,7 +37,7 @@ namespace UI
                     case 3:
                         foreach (Figure f in figures)
                         {
-                            Console.WriteLine(f.ToString() + " " + f.GetArea().ToString());
+                            Console.WriteLine(f.ToString() + " with area:" + f.GetArea().ToString());
                         }
                         break;
                     case 4:
