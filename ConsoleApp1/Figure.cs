@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace Figures
-{ 
+{
     //Родительский класс для всех фигур
-    abstract class Figure
+    class Figure
     {
         [JsonIgnore] // Ignore these properties during serialization
         public Color LineColor { get; set; }
@@ -28,7 +28,7 @@ namespace Figures
             set => FillColor = ColorTranslator.FromHtml(value);
         }
         
-        public Points.Point[] Vertices { get; set; }
+        
         
         // Constructor for serialization and custom deserialization
         [JsonConstructor]
@@ -38,8 +38,10 @@ namespace Figures
             LineColor = lineColor;
             FillColor = fillColor;
         }
+        public Points.Point[] Vertices { get; set; }
 
-        public abstract double GetArea();
+        public virtual double GetArea()
+        { return 0; }
 
 
         

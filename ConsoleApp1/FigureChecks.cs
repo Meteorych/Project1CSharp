@@ -1,4 +1,7 @@
-﻿using Triangles;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Triangles;
 namespace FigureChecks
 {
     class Check

@@ -4,7 +4,16 @@ namespace Points
     
     class Point
     {
+        
         [JsonConstructor]
+        public Point(double[] coordinates, int dimension)
+        {
+
+            Coordinates = coordinates;
+            Dimension = dimension;
+
+        }
+
         public Point(double[] pointCords)
         {
 
