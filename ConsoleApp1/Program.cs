@@ -15,7 +15,7 @@ namespace Program {
             List<Figure> figures = new List<Figure>();
             if (jsonData.Length > 0)
             {
-                figures = JsonSerializer.Deserialize<List<Figure>>(jsonData);
+                figures = JsonSerializer.Deserialize<List<Figure>>(jsonData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, IncludeFields = true });
             }
             UserInterface userInterface = new UserInterface(figures);
             while (true)

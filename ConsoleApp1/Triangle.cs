@@ -8,21 +8,19 @@ namespace Triangles
     //Создание объекта треугольник с помощью наследуемого класса от родителького класса Figure
     class Triangle : Figure
     {
-        private List<double> sides;
+        
         private int numOfSides = 3;
-        [JsonConstructor]
+        
         public Triangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
-        {
+        {   
             if (vertices.Length != numOfSides)
             {
                 throw new ArgumentException("List of vertices should be equal 3.");
             }
             Vertices = vertices;
-            sides = Sides();
-
         }
+
         //Расчёт длины сторон
-        
         public List<double> Sides()
         {
             List <double> sides = new List<double>();
@@ -33,16 +31,16 @@ namespace Triangles
             }
             return sides;
         }
+
         //перегруженная из родительского класса фукнция, возвращающая площадь треугольника
         public override double GetArea()
         {
-            sides = Sides();
+            List<double> sides = Sides();
             return 0.5 * Math.Abs((this.Vertices[1].Coordinates[0] - this.Vertices[0].Coordinates[0]) * (this.Vertices[2].Coordinates[1] - this.Vertices[0].Coordinates[1]) - (this.Vertices[2].Coordinates[0] - this.Vertices[0].Coordinates[0]) * (this.Vertices[1].Coordinates[1] - this.Vertices[0].Coordinates[1]));
         }
     }
     class RectangularTriangle : Triangle
     {
-    
         public RectangularTriangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             

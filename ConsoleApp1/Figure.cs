@@ -1,35 +1,32 @@
 ﻿using System.Drawing;
 using Points;
 using System.ComponentModel;
+using Triangles;
+using Qudrangles;
+using Circles;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+
 
 namespace Figures
 {
+
+    [JsonDerivedType(typeof(Triangle), typeDiscriminator: "Triangle")]
+    [JsonDerivedType(typeof(RectangularTriangle), typeDiscriminator:"RectTriangle")]
+    [JsonDerivedType(typeof(Circle), typeDiscriminator: "Circle")]
+    [JsonDerivedType(typeof(Quadrangle), typeDiscriminator: "Quadrangle")]
+    [JsonDerivedType(typeof(Square), typeDiscriminator: "Square")]
     //Родительский класс для всех фигур
     class Figure
     {
-        [JsonIgnore] // Ignore these properties during serialization
+        
         public Color LineColor { get; set; }
-
-        [JsonIgnore] // Ignore these properties during serialization
+        
         public Color FillColor { get; set; }
+        public Points.Point[] Vertices { get; set; }
 
-        [JsonPropertyName("lineColor")]
-        public string LineColorString
-        {
-            get => ColorTranslator.ToHtml(LineColor);
-            set => LineColor = ColorTranslator.FromHtml(value);
-        }
-
-        [JsonPropertyName("fillColor")]
-        public string FillColorString
-        {
-            get => ColorTranslator.ToHtml(FillColor);
-            set => FillColor = ColorTranslator.FromHtml(value);
-        }
         
-        
-        
+ 
         // Constructor for serialization and custom deserialization
         [JsonConstructor]
         public Figure(Points.Point[] vertices, Color lineColor, Color fillColor)
@@ -38,13 +35,9 @@ namespace Figures
             LineColor = lineColor;
             FillColor = fillColor;
         }
-        public Points.Point[] Vertices { get; set; }
 
         public virtual double GetArea()
         { return 0; }
-
-
-        
     }
     
 }
