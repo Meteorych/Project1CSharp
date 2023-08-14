@@ -1,6 +1,0 @@
-﻿namespace IRepository
-{
-    interface IRepositoryJson
-    {
-    }
-}

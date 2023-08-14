@@ -1,5 +1,6 @@
 ﻿using Actions;
 using Figures;
+using ListControl;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,11 +10,11 @@ namespace UI
     class UserInterface
     {
         
-        private List<Figure> figures;
+        private FiguresList figuresList;
         private bool endProgram;
-        public UserInterface(List<Figure> figures)
+        public UserInterface(FiguresList figures)
         {
-            this.figures = figures;
+            this.figuresList = figures;
             endProgram = false;
         }
 
@@ -22,7 +23,7 @@ namespace UI
         public void ActionChoice()
         {
             Console.WriteLine("Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, 4 -- Total Area: ");
-            Actions.Action action = new Actions.Action(figures);
+            Actions.Action action = new Actions.Action(figuresList);
             try
             {
                 var choice = Convert.ToInt32(Console.ReadLine());
@@ -31,24 +32,21 @@ namespace UI
                     case 1:
                         Color lineColor = ColorChoice(true);
                         Color fillColor = ColorChoice(false);
-                        figures.Add(action.FigureCreating(lineColor, fillColor));
+                        figuresList.Insert(action.FigureCreating(lineColor, fillColor));
                         break;
                     case 2:
-                        action.DeletingFigure();
+                        Console.WriteLine("Input the number of figure you want to delete: ");
+                        int figureId = Convert.ToInt32(Console.ReadLine());
+                        figuresList.Delete(figureId);
                         break;
                     case 3:
-                        foreach (Figure f in figures)
+                        foreach (Figure f in figuresList.Figures)
                         {
                             Console.WriteLine(f.ToString() + " with area:" + f.GetArea().ToString());
                         }
                         break;
                     case 4:
-                        double area = 0;
-                        foreach (Figure f in figures)
-                        {
-                            area += f.GetArea();
-                        }
-                        Console.WriteLine("Total area:" + area);
+                        Console.WriteLine("Total area:" + figuresList.GetTotalArea());
                         break;
                     default:
                         endProgram = true;

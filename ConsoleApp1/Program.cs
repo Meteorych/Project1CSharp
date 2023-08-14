@@ -1,6 +1,7 @@
 ﻿using Figures;
 using UI;
 using System.Text.Json;
+using ListControl;
 using System.IO;
 using System.Collections.Generic;
 
@@ -11,20 +12,20 @@ namespace Program {
         static void Main()
         {
             //Stopwatch stopwatch = new Stopwatch();
-            string jsonData = File.ReadAllText("C:/CSharp and DotNet/Project1/ConsoleApp1/FiguresData.json");
-            List<Figure> figures = new List<Figure>();
-            if (jsonData.Length > 0)
-            {
-                figures = JsonSerializer.Deserialize<List<Figure>>(jsonData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, IncludeFields = true });
-            }
+            //Разобраться с односительным путем
+            //Передавать через интерфейсы
+            //Сделать отдельный класс-репозиторий, реализовать так же UI
+            string fileName = "FiguresData.json";
+            FiguresList figures = new FiguresList(File.ReadAllText(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\", fileName)));
             UserInterface userInterface = new UserInterface(figures);
+            //Перенести всю работу с пользователм UI
             while (true)
             {
                 userInterface.ActionChoice();
                 if (userInterface.EndProgram == true)
                 {
                     string jsonString = JsonSerializer.Serialize(figures, new JsonSerializerOptions { WriteIndented = true });
-                    File.WriteAllText("C:/CSharp and DotNet/Project1/ConsoleApp1/FiguresData.json", jsonString);
+                    File.WriteAllText((Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\", fileName)), jsonString);
                     break;
                 }
             }

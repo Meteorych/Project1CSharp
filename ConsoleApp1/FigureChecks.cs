@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Triangles;
-namespace FigureChecks
+namespace FiguresChecks
 {
-    class Check
+    class FiguresCheck
     {
         public bool IsRectangle(Triangle triangle)
         {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Text.Json.Serialization;
 using Figures;
 namespace Triangles
@@ -9,13 +7,13 @@ namespace Triangles
     class Triangle : Figure
     {
         
-        private int numOfSides = 3;
+        private const int numOfSides = 3;
         
         public Triangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {   
             if (vertices.Length != numOfSides)
             {
-                throw new ArgumentException("List of vertices should be equal 3.");
+                throw new ArgumentException("List of vertices should be ." + numOfSides);
             }
             Vertices = vertices;
         }

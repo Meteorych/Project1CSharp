@@ -1,27 +1,21 @@
 ﻿using System.Drawing;
 using Figures;
-using FigureChecks;
+using FiguresChecks;
 using Qudrangles;
 using Circles;
 using Triangles;
 using UI;
 using System.Text.RegularExpressions;
+using ListControl;
 
 namespace Actions
 {
     class Action
     {
-        private List<Figure> figures;
-        public Action(List <Figure> figures) {
-            this.figures = figures;
-        }
-
-        public List<Figure> DeletingFigure()
+        private FiguresList figures;
+        public Action(FiguresList figures) 
         {
-            Console.WriteLine("Input the number of figure you want to delete: ");
-            int num = Convert.ToInt32(Console.ReadLine());
-            figures.RemoveAt(num);
-            return figures;
+            this.figures = figures;
         }
 
         public Points.Point[] VerticeCreation(int numOfVertices, string coordinates)
@@ -92,7 +86,7 @@ namespace Actions
         public Triangle TriangleCreation(Points.Point[] vertices, Color lineColor, Color fillColor)
         {
             Triangle triangle = new Triangle(vertices, lineColor, fillColor);
-            Check check = new Check();
+            FiguresCheck check = new FiguresCheck();
             if (check.IsRectangle(triangle))
             {
                 return new RectangularTriangle(vertices, lineColor, fillColor);

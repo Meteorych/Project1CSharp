@@ -6,7 +6,7 @@ using Qudrangles;
 using Circles;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
-
+using IRepository;
 
 namespace Figures
 {
@@ -19,13 +19,11 @@ namespace Figures
     //Родительский класс для всех фигур
     class Figure
     {
-        
+        //Попробовать реализовать Data Access Layer
         public Color LineColor { get; set; }
         
         public Color FillColor { get; set; }
         public Points.Point[] Vertices { get; set; }
-
-        
  
         // Constructor for serialization and custom deserialization
         [JsonConstructor]
