@@ -1,2 +1,2 @@
 # C# Project (Counting area of figures)
-Version of .NET — 6.0 
+Version of .NET — 7.0 
