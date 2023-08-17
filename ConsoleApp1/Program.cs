@@ -1,12 +1,13 @@
 ﻿using Figures;
-using UI;
 using System.Text.Json;
-using ListControl;
 using System.IO;
 using System.Collections.Generic;
+using ConsoleApp1.View;
+using ConsoleApp1.Figures;
 
-namespace Program {
-    
+namespace Program
+{
+
     class Program
     {
         static void Main()

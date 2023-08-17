@@ -4,8 +4,6 @@ namespace Points
     
     class Point
     {
-        
-        [JsonConstructor]
         public Point(double[] pointCords)
         {
             Coordinates = pointCords;

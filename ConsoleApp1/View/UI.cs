@@ -1,20 +1,19 @@
 ﻿using Actions;
-using Figures;
-using ListControl;
+using ConsoleApp1.Figures;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace UI
+namespace ConsoleApp1.View
 {
     class UserInterface
     {
-        
+
         private FiguresList figuresList;
         private bool endProgram;
         public UserInterface(FiguresList figures)
         {
-            this.figuresList = figures;
+            figuresList = figures;
             endProgram = false;
         }
 
@@ -22,7 +21,7 @@ namespace UI
         //Пользователю даётся возможность выбирать из 4 возможных дейтсвий (Добавить фигуру, удалить фигуру, показать фигуры, общая площадь)
         public void ActionChoice()
         {
-            Console.WriteLine("Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, 4 -- Total Area: ");
+            Console.WriteLine("Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, 4 -- Total Area:, 5 -- Save to Repository;");
             Actions.Action action = new Actions.Action(figuresList);
             try
             {
@@ -32,12 +31,12 @@ namespace UI
                     case 1:
                         Color lineColor = ColorChoice(true);
                         Color fillColor = ColorChoice(false);
-                        figuresList.Insert(action.FigureCreating(lineColor, fillColor));
+                        figuresList.Save(action.FigureCreating(lineColor, fillColor));
                         break;
                     case 2:
                         Console.WriteLine("Input the number of figure you want to delete: ");
                         int figureId = Convert.ToInt32(Console.ReadLine());
-                        figuresList.Delete(figureId);
+                        figuresList.Dump(figureId);
                         break;
                     case 3:
                         foreach (Figure f in figuresList.Figures)

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Drawing;
-using Figures;
 
 
 
-namespace Circles
+namespace ConsoleApp1.Figures
 {
 
     class Circle : Figure
     {
-        
+
         private double radius;
-        
+
         public Circle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             radius = Convert.ToInt32(string.Concat(vertices[1].Coordinates));

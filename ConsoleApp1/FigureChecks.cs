@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Triangles;
+using ConsoleApp1.Figures;
 namespace FiguresChecks
 {
     class FiguresCheck

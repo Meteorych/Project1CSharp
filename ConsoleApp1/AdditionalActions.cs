@@ -1,12 +1,8 @@
 ﻿using System.Drawing;
-using Figures;
 using FiguresChecks;
-using Qudrangles;
 using Circles;
-using Triangles;
-using UI;
 using System.Text.RegularExpressions;
-using ListControl;
+using ConsoleApp1.Figures;
 
 namespace Actions
 {

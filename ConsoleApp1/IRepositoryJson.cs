@@ -1,9 +1,23 @@
-﻿using Figures;
-namespace IRepository
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using IRepository;
+
+namespace IRepositoryJson
 {
-    interface IRepositoryJson
+    class IRepositoryJson : IRepository.IRepository
     {
-        void Insert(Figure figure);
-        void Delete(int figurehd);
+        private string? RepositoryData;
+        public void Upload(string fileName) 
+        {
+        
+        }
+        public void Dump(string RepositoryData)
+        {
+
+        }
+        
     }
 }
