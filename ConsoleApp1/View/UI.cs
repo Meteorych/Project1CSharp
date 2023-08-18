@@ -31,12 +31,12 @@ namespace ConsoleApp1.View
                     case 1:
                         Color lineColor = ColorChoice(true);
                         Color fillColor = ColorChoice(false);
-                        figuresList.Save(action.FigureCreating(lineColor, fillColor));
+                        figuresList.Add(action.FigureCreating(lineColor, fillColor));
                         break;
                     case 2:
                         Console.WriteLine("Input the number of figure you want to delete: ");
                         int figureId = Convert.ToInt32(Console.ReadLine());
-                        figuresList.Dump(figureId);
+                        figuresList.Remove(figureId);
                         break;
                     case 3:
                         foreach (Figure f in figuresList.Figures)

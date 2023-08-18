@@ -1,9 +1,9 @@
-﻿using Figures;
+﻿using ConsoleApp1.Figures;
 namespace IRepository
 {
     interface IRepository
     {
-        void Save(string fileName);
+        void Upload(string fileName);
         void Dump(string repositoryData);
     }
 }
