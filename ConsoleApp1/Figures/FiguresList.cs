@@ -1,26 +1,28 @@
 ﻿using IRepository;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using UI;
 using System;
 
 namespace ConsoleApp1.Figures
 {
     class FiguresList
     {
-        List<Figure> figures = new List<Figure>();
+        private List<Figure> figures = new List<Figure>();
         //при реализации каждого шага по выбору пользователя сохранять в репозитории
-        public FiguresList(string jsonData)
+        public FiguresList()
         {
-            List<Figure> figures = new List<Figure>();
+            
 
         }
-
-        public void Save(Figure figure)
+        public void Save()
+        {
+            
+        }
+        public void Add(Figure figure)
         {
             figures.Add(figure);
         }
-        public void Dump(int figureId)
+        public void Remove(int figureId)
         {
             figures.RemoveAt(figureId);
         }
@@ -33,6 +35,6 @@ namespace ConsoleApp1.Figures
             }
             return area;
         }
-        public List<Figure> Figures { get { return figures; } }
+        public List<Figure> Figures { get { return figures; } set { figures = value; } }
     }
 }

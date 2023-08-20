@@ -14,7 +14,7 @@ namespace IRepositoryJson
         private string? repositoryData;
         private string fileName;
         private List<Figure> figures;
-        public void Upload(string fileName) 
+        void IRepository.IRepository.Upload(string fileName) 
         {
             this.fileName = fileName;
             repositoryData = File.ReadAllText(fileName);
@@ -24,7 +24,7 @@ namespace IRepositoryJson
                 figures = JsonSerializer.Deserialize<List<Figure>>(repositoryData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ;
             }
         }
-        public void Dump()
+        void IRepository.IRepository.Dump()
         {
             string RepositoryData = JsonSerializer.Serialize(figures, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText((Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\", fileName)), RepositoryData);

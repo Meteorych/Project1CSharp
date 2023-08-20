@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using ConsoleApp1.View;
 using ConsoleApp1.Figures;
 using IRepositoryJson;
+using IRepository;
+using RepositoryFactory;
 
 namespace Program
 {
@@ -13,33 +15,20 @@ namespace Program
         static void Main()
         {
             //Stopwatch stopwatch = new Stopwatch();
-            //Разобраться с односительным путем
-            //Передавать через интерфейсы
             //Сделать отдельный класс-репозиторий, реализовать так же UI
             string fileName = "FiguresData.json";
-            string extension = Path.GetExtension(fileName);
-            if (extension == "json")
-            {
-                IRepositoryJson.IRepositoryJson repositoryData = new IRepositoryJson.IRepositoryJson();
-                repositoryData.Upload(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\", fileName));
-                FiguresList figureslist = repositoryData.GetData;
-            }
-            else
-            {
-                IRepositoryJson.IRepositoryJson repositoryData = new IRepositoryJson.IRepositoryJson();
-                FiguresList figureslist = repositoryData.FiguresList;
-            }
-    
-            
-            UserInterface userInterface = new UserInterface(figureslist);
+            RepositoryFactory.RepositoryFactory repositoryChoice = new RepositoryFactory.RepositoryFactory(fileName);
+            IRepository.IRepository repositoryData = repositoryChoice.RepositoryData;
+            FiguresList figures = new FiguresList();
+            figures.Figures = repositoryData.GetData;
+            UserInterface userInterface = new UserInterface(figures);
             //Перенести всю работу с пользователм UI
             while (true)
             {
                 userInterface.ActionChoice();
                 if (userInterface.EndProgram == true)
                 {
-                    
-                    re
+                    repositoryData.Dump();
                     break;
                 }
             }

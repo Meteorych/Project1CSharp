@@ -1,9 +1,6 @@
 ﻿using System.Drawing;
 using Points;
 using System.ComponentModel;
-using Triangles;
-using Qudrangles;
-using Circles;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 using IRepository;

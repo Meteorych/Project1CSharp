@@ -4,6 +4,7 @@ namespace IRepository
     interface IRepository
     {
         void Upload(string fileName);
-        void Dump(string repositoryData);
+        void Dump();
+        List<Figure> GetData { get; }
     }
 }
