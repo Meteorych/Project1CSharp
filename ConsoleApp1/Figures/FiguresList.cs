@@ -7,12 +7,11 @@ namespace ConsoleApp1.Figures
 {
     class FiguresList
     {
-        private List<Figure> figures = new List<Figure>();
+        private List<Figure> figures;
         //при реализации каждого шага по выбору пользователя сохранять в репозитории
         public FiguresList()
         {
-            
-
+            figures = new List<Figure>();
         }
         public void Save()
         {

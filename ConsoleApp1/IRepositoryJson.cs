@@ -29,7 +29,7 @@ namespace IRepositoryJson
             string RepositoryData = JsonSerializer.Serialize(figures, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText((Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\", fileName)), RepositoryData);
         }
-        public List<Figure> GetData
-        { get { return figures; } }
+        public List<Figure> Data
+        { get { return figures; } set { figures = value; } }
     }
 }

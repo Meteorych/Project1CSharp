@@ -12,7 +12,6 @@ namespace RepositoryFactory
         private IRepository.IRepository repositoryData;
         public RepositoryFactory(string fileName) {
             string extension = Path.GetExtension(fileName);
-            FiguresList figuresList = new FiguresList();
             if (extension == "json")
             {
                 repositoryData = new IRepositoryJson.IRepositoryJson();
@@ -22,7 +21,6 @@ namespace RepositoryFactory
             else
             {
                 repositoryData = new IRepositoryJson.IRepositoryJson();
-                figuresList.Figures = repositoryData.GetData;
             }
         }
 
