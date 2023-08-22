@@ -5,6 +5,6 @@ namespace IRepository
     {
         void Upload(string fileName);
         void Dump();
-        List<Figure> GetData { get; }
+        List<Figure> Data { get; set; }
     }
 }
