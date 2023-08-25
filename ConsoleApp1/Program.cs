@@ -1,11 +1,7 @@
-﻿using System.Text.Json;
-using System.IO;
-using System.Collections.Generic;
-using ConsoleApp1.View;
+﻿using ConsoleApp1.View;
 using ConsoleApp1.Figures;
-using IRepositoryJson;
-using IRepository;
-using RepositoryFactory;
+using ConsoleApp1.RepositoryManage;
+using ConsoleApp1.DataAccessLayer;
 
 namespace Program
 {
@@ -15,19 +11,10 @@ namespace Program
         static void Main()
         {
             string fileName = "FiguresData.json";
-            RepositoryFactory.RepositoryFactory repositoryChoice = new RepositoryFactory.RepositoryFactory(fileName);
-            IRepository.IRepository repositoryData = repositoryChoice.RepositoryData;
+            IRepository repositoryData = new RepositoryFactory(fileName).RepositoryData;
             FiguresList figures = new FiguresList();
-            if (repositoryData.Data != null) 
-            {
-                figures.Figures = repositoryData.Data;
-            }
-            UserInterface userInterface = new UserInterface(figures);
-            userInterface.ActionChoice();
-            repositoryData.Dump();
-                    
-            
-
+            figures.Figures = new DALParser().CreateIsntance(repositoryData.Data);
+            new UserInterface(figures, repositoryData).ActionChoice();
         } 
     }
  }

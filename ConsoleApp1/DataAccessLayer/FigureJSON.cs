@@ -2,24 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
-
-namespace FigureJSON
+namespace ConsoleApp1.DataAccessLayer
 {
-    [JsonDerivedType(typeof(Triangle), typeDiscriminator: "Triangle")]
-    [JsonDerivedType(typeof(RectangularTriangle), typeDiscriminator: "RectTriangle")]
-    [JsonDerivedType(typeof(Circle), typeDiscriminator: "Circle")]
-    [JsonDerivedType(typeof(Quadrangle), typeDiscriminator: "Quadrangle")]
-    [JsonDerivedType(typeof(Square), typeDiscriminator: "Square")]
+    [JsonDerivedType(typeof(TriangleJSON), typeDiscriminator: "Triangle")]
+    [JsonDerivedType(typeof(RectangularTriangleJSON), typeDiscriminator: "RectTriangle")]
+    [JsonDerivedType(typeof(CircleJSON), typeDiscriminator: "Circle")]
+    [JsonDerivedType(typeof(QuadrangleJSON), typeDiscriminator: "Quadrangle")]
+    [JsonDerivedType(typeof(SquareDAL), typeDiscriminator: "Square")]
     class FigureJSON
     {
         public Color LineColor { get; set; }
         public Color FillColor { get; set; }
         public Points.Point[] Vertices { get; set; }
 
-        // Constructor for serialization and custom deserialization
-        [JsonConstructor]
         public FigureJSON(Points.Point[] vertices, Color lineColor, Color fillColor)
         {
             Vertices = vertices;
@@ -28,3 +28,4 @@ namespace FigureJSON
         }
     }
 }
+

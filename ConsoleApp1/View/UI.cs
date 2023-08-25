@@ -1,5 +1,6 @@
 ﻿using Actions;
 using ConsoleApp1.Figures;
+using ConsoleApp1.RepositoryManage;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,9 +12,10 @@ namespace ConsoleApp1.View
 
         private FiguresList figuresList;
         private bool endProgram;
-        public UserInterface(FiguresList figures)
+        public UserInterface(FiguresList figures, IRepository data)
         {
             figuresList = figures;
+            RepositoryData = data;
             endProgram = false;
         }
 
@@ -57,10 +59,11 @@ namespace ConsoleApp1.View
                             Console.WriteLine("Total area:" + figuresList.GetTotalArea());
                             break;
                         case 5:
-                            figuresList.Save();
+                            figuresList.Save(RepositoryData);
                             break;
                         default:
                             endProgram = true;
+                            RepositoryData.Dump();
                             break;
                     }
                 }
@@ -91,5 +94,7 @@ namespace ConsoleApp1.View
                 throw;
             }
         }
+
+        public IRepository RepositoryData { get; set; }
     }
 }

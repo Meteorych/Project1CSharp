@@ -21,6 +21,5 @@ namespace ConsoleApp1.Figures
         {
             return Math.Pow(radius, 2) * Math.PI;
         }
-
     }
 }

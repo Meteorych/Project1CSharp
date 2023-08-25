@@ -6,7 +6,7 @@ namespace FiguresChecks
 {
     class FiguresCheck
     {
-        public bool IsRectangle(Triangle triangle)
+        public bool IsRectangle(TriangleJSON triangle)
         {
             double summ = 0;
             List<double> sides = triangle.Sides();

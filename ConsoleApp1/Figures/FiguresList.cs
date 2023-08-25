@@ -1,7 +1,7 @@
-﻿using IRepository;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using System.Text.Json;
 using System;
+using ConsoleApp1.RepositoryManage;
 
 namespace ConsoleApp1.Figures
 {
@@ -13,9 +13,10 @@ namespace ConsoleApp1.Figures
         {
             figures = new List<Figure>();
         }
-        public void Save()
+        public IRepository Save(IRepository data)
         {
-            
+            data.Data = figures;
+            return data;
         }
         public void Add(Figure figure)
         {
