@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using ConsoleApp1.Figures;
-namespace FiguresChecks
+
+namespace ConsoleApp1.Actions
 {
     class FiguresCheck
     {
-        public bool IsRectangle(TriangleJSON triangle)
+        public bool IsRectangle(Triangle triangle)
         {
             double summ = 0;
             List<double> sides = triangle.Sides();

@@ -12,8 +12,10 @@ namespace Program
         {
             string fileName = "FiguresData.json";
             IRepository repositoryData = new RepositoryFactory(fileName).RepositoryData;
-            FiguresList figures = new FiguresList();
-            figures.Figures = new DALParser().CreateIsntance(repositoryData.Data);
+            FiguresList figures = new()
+            {
+                Figures = DALParser.CreateIsntance(repositoryData.Data)
+            };
             new UserInterface(figures, repositoryData).ActionChoice();
         } 
     }

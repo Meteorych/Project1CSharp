@@ -6,10 +6,10 @@ namespace ConsoleApp1.Figures
 {
     class Quadrangle : Figure
     {
-        private Points.Point[] vertices;
+        private Vertex.Point[] vertices;
         private List<double> sides;
         private int numOfSides = 4;
-        public Quadrangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
+        public Quadrangle(Vertex.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             //Передавать вершины в порядке следования
             this.vertices = vertices;
@@ -37,7 +37,7 @@ namespace ConsoleApp1.Figures
     class Square : Quadrangle
     {
 
-        public Square(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
+        public Square(Vertex.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
 
         }

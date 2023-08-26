@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System;
 using ConsoleApp1.RepositoryManage;
+using ConsoleApp1.DataAccessLayer;
 
 namespace ConsoleApp1.Figures
 {
@@ -15,7 +16,7 @@ namespace ConsoleApp1.Figures
         }
         public IRepository Save(IRepository data)
         {
-            data.Data = figures;
+            data.Data = DALParser.FromIsntanceToDAL(figures);
             return data;
         }
         public void Add(Figure figure)

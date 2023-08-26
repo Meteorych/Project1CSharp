@@ -1,36 +1,31 @@
 ﻿using System.Drawing;
-using FiguresChecks;
 using System.Text.RegularExpressions;
 using ConsoleApp1.Figures;
 
-namespace Actions
+namespace ConsoleApp1.Actions
 {
     class Action
     {
-        private FiguresList figures;
-        public Action(FiguresList figures) 
-        {
-            this.figures = figures;
-        }
 
-        public Points.Point[] VerticeCreation(int numOfVertices, string coordinates)
+
+        public static Vertex.Point[] VerticeCreation(int numOfVertices, string coordinates)
         {
-            Points.Point[] Figurevertices = new Points.Point[numOfVertices];
+            Vertex.Point[] Figurevertices = new Vertex.Point[numOfVertices];
             for (int i = 0; i < numOfVertices; i++)
             {
                 //Разбиваем координаты на список по вершинам, которые они обозначают 
                 string[] listOfCoordinates = coordinates.Split(",");
                 foreach (string line in listOfCoordinates)
                 {
-                    Figurevertices[i] = new Points.Point(new double[] { double.Parse(listOfCoordinates[i][0].ToString()), double.Parse(listOfCoordinates[i][1].ToString()) });
+                    Figurevertices[i] = new Vertex.Point(new double[] { double.Parse(listOfCoordinates[i][0].ToString()), double.Parse(listOfCoordinates[i][1].ToString()) });
                 }
             }
             return Figurevertices;
         }
 
-        public int CalcNumOfVertices(string coordinates)
+        public static int CalcNumOfVertices(string coordinates)
         {
-            Regex comma = new Regex(@",");
+            Regex comma = new(@",");
             int numOfVertices = comma.Matches(coordinates).Count + 1;
             return numOfVertices;
         }
@@ -44,16 +39,16 @@ namespace Actions
                 coordinates = Console.ReadLine();
             } while (string.IsNullOrEmpty(coordinates));
 
-            Regex regex = new Regex(@"[^0-9,]");
-            if (regex.Matches(coordinates).Count != 0 || (coordinates.Length == 0 || coordinates.Length == 1))
+            Regex regex = new(@"[^0-9,]");
+            if (regex.Matches(coordinates).Count != 0 || coordinates.Length == 0 || coordinates.Length == 1)
             {
                 throw new FormatException("Wrong Format of coordinates");
             }
 
             int numOfVertices = CalcNumOfVertices(coordinates);
 
-            Points.Point[] Figurevertices = VerticeCreation(numOfVertices, coordinates);
-            
+            Vertex.Point[] Figurevertices = VerticeCreation(numOfVertices, coordinates);
+
             if (numOfVertices == 2)
             {
                 return new Circle(Figurevertices, lineColor, fillColor);
@@ -64,7 +59,7 @@ namespace Actions
             }
             else
             {
-                Quadrangle quadrangle = new Quadrangle(Figurevertices, lineColor, fillColor);
+                Quadrangle quadrangle = new(Figurevertices, lineColor, fillColor);
                 List<double> sides = quadrangle.MakingSides();
                 bool SidesEqual = sides.All(x => x == sides[0]);
                 if (SidesEqual)
@@ -78,10 +73,10 @@ namespace Actions
             }
         }
 
-        public TriangleJSON TriangleCreation(Points.Point[] vertices, Color lineColor, Color fillColor)
+        public static Triangle TriangleCreation(Vertex.Point[] vertices, Color lineColor, Color fillColor)
         {
-            TriangleJSON triangle = new Triangle(vertices, lineColor, fillColor);
-            FiguresCheck check = new FiguresCheck();
+            Triangle triangle = new(vertices, lineColor, fillColor);
+            FiguresCheck check = new();
             if (check.IsRectangle(triangle))
             {
                 return new RectangularTriangle(vertices, lineColor, fillColor);

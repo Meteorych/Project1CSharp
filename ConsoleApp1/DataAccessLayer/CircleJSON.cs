@@ -8,6 +8,9 @@ namespace ConsoleApp1.DataAccessLayer
 
     class CircleJSON : FigureJSON
     {
-        public CircleJSON() { }
+        public CircleJSON(PointJSON[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
+        {
+
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace ConsoleApp1.DataAccessLayer
 
         private const int numOfSides = 3;
 
-        public TriangleJSON(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
+        public TriangleJSON(PointJSON[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             if (vertices.Length != numOfSides)
             {
@@ -20,7 +20,7 @@ namespace ConsoleApp1.DataAccessLayer
     }
     class RectangularTriangleJSON : TriangleJSON
     {
-        public RectangularTriangleJSON(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
+        public RectangularTriangleJSON(PointJSON[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
 
         }

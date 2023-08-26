@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1.DataAccessLayer
 {
@@ -13,14 +10,14 @@ namespace ConsoleApp1.DataAccessLayer
     [JsonDerivedType(typeof(RectangularTriangleJSON), typeDiscriminator: "RectTriangle")]
     [JsonDerivedType(typeof(CircleJSON), typeDiscriminator: "Circle")]
     [JsonDerivedType(typeof(QuadrangleJSON), typeDiscriminator: "Quadrangle")]
-    [JsonDerivedType(typeof(SquareDAL), typeDiscriminator: "Square")]
+    [JsonDerivedType(typeof(SquareJSON), typeDiscriminator: "Square")]
     class FigureJSON
     {
         public Color LineColor { get; set; }
         public Color FillColor { get; set; }
-        public Points.Point[] Vertices { get; set; }
+        public PointJSON[] Vertices { get; set; }
 
-        public FigureJSON(Points.Point[] vertices, Color lineColor, Color fillColor)
+        public FigureJSON(PointJSON[] vertices, Color lineColor, Color fillColor)
         {
             Vertices = vertices;
             LineColor = lineColor;

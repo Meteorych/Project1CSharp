@@ -32,3 +32,5 @@ ConsoleApp1/obj/project.nuget.cache
 *.dll
 *.vsidx
 *.dll
+*.v2
+*.bin

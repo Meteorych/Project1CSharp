@@ -9,7 +9,7 @@ namespace ConsoleApp1.Figures
 
         private const int numOfSides = 3;
 
-        public Triangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
+        public Triangle(Vertex.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             if (vertices.Length != numOfSides)
             {
@@ -39,7 +39,7 @@ namespace ConsoleApp1.Figures
     }
     class RectangularTriangle : Triangle
     {
-        public RectangularTriangle(Points.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
+        public RectangularTriangle(Vertex.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
 
         }
