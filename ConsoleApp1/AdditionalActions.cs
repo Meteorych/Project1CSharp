@@ -78,9 +78,9 @@ namespace Actions
             }
         }
 
-        public Triangle TriangleCreation(Points.Point[] vertices, Color lineColor, Color fillColor)
+        public TriangleJSON TriangleCreation(Points.Point[] vertices, Color lineColor, Color fillColor)
         {
-            Triangle triangle = new Triangle(vertices, lineColor, fillColor);
+            TriangleJSON triangle = new Triangle(vertices, lineColor, fillColor);
             FiguresCheck check = new FiguresCheck();
             if (check.IsRectangle(triangle))
             {
