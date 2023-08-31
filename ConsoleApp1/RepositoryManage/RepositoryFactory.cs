@@ -6,7 +6,7 @@
         public RepositoryFactory(string fileName)
         {
             string extension = Path.GetExtension(fileName);
-            if (extension == "json")
+            if (extension == ".json")
             {
                 repositoryData = new IRepositoryJson();
                 repositoryData.Upload(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\", fileName));

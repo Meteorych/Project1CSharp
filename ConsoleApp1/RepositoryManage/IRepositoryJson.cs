@@ -19,7 +19,7 @@ namespace ConsoleApp1.RepositoryManage
             this.fileName = fileName;
             repositoryData = File.ReadAllText(fileName);
             figures = new List<FigureJSON>();
-            if (repositoryData != null)
+            if (String.IsNullOrEmpty(repositoryData) is false)
             {
                 figures = JsonSerializer.Deserialize<List<FigureJSON>>(repositoryData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             }
@@ -29,9 +29,6 @@ namespace ConsoleApp1.RepositoryManage
             string RepositoryData = JsonSerializer.Serialize(figures, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\", fileName), RepositoryData);
         }
-        public List<Figure> Data()
-        {
-
-        }
+        public List<FigureJSON> Data { get { return figures; } set {figures = value; } }
     }
 }

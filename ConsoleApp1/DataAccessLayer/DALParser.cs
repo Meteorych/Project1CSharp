@@ -5,6 +5,9 @@ namespace ConsoleApp1.DataAccessLayer
 {
     class DALParser
     {
+        /// <summary>
+        /// Create instance of figure
+        /// </summary>
         static public List<Figure> CreateIsntance(List<FigureJSON> figures)
         {
             List<Figure> result = new();

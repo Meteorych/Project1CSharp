@@ -6,31 +6,31 @@ namespace ConsoleApp1.Figures
 {
     class Quadrangle : Figure
     {
-        private Vertex.Point[] vertices;
-        private List<double> sides;
-        private int numOfSides = 4;
+        private Vertex.Point[] _vertices;
+        private List<double> _sides;
+        private const int _numOfSides = 4;
         public Quadrangle(Vertex.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
             //Передавать вершины в порядке следования
-            this.vertices = vertices;
-            sides = MakingSides();
+            this._vertices = vertices;
+            _sides = MakingSides();
 
         }
         public List<double> MakingSides()
         {
             List<double> sides = new List<double>();
-            for (int i = 0; i < numOfSides; i++)
+            for (int i = 0; i < _numOfSides; i++)
             {
 
-                int j = (i + 1) % numOfSides;
-                sides.Add(Math.Sqrt(Math.Pow(vertices[j].Coordinates[0] - vertices[i].Coordinates[0], 2) + Math.Pow(vertices[j].Coordinates[1] - vertices[i].Coordinates[1], 2)));
+                int j = (i + 1) % _numOfSides;
+                sides.Add(Math.Sqrt(Math.Pow(_vertices[j].Coordinates[0] - _vertices[i].Coordinates[0], 2) + Math.Pow(_vertices[j].Coordinates[1] - _vertices[i].Coordinates[1], 2)));
             }
             return sides;
         }
         public override double GetArea()
         {
-            sides = MakingSides();
-            return sides[0] * sides[1];
+            _sides = MakingSides();
+            return _sides[0] * _sides[1];
         }
     }
 

@@ -11,12 +11,14 @@ namespace Program
         static void Main()
         {
             string fileName = "FiguresData.json";
+            Dictionary<string, string> keyPhrases = new KeyPhrasesParser().KeyPhrases;
             IRepository repositoryData = new RepositoryFactory(fileName).RepositoryData;
-            FiguresList figures = new()
+            FiguresManager figures = new()
             {
                 Figures = DALParser.CreateIsntance(repositoryData.Data)
             };
-            new UserInterface(figures, repositoryData).ActionChoice();
+            //Весь хардкод в константы, хранящие0ся в словарике
+            new UserInterfaceConsole(figures, repositoryData, keyPhrases).ActionChoice();
         } 
     }
  }

@@ -6,36 +6,37 @@ using ConsoleApp1.DataAccessLayer;
 
 namespace ConsoleApp1.Figures
 {
-    class FiguresList
+    
+    class FiguresManager
     {
-        private List<Figure> figures;
+        private List<Figure> _figures;
         //при реализации каждого шага по выбору пользователя сохранять в репозитории
-        public FiguresList()
+        public FiguresManager()
         {
-            figures = new List<Figure>();
+            _figures = new List<Figure>();
         }
         public IRepository Save(IRepository data)
         {
-            data.Data = DALParser.FromIsntanceToDAL(figures);
+            data.Data = DALParser.FromIsntanceToDAL(_figures);
             return data;
         }
         public void Add(Figure figure)
         {
-            figures.Add(figure);
+            _figures.Add(figure);
         }
         public void Remove(int figureId)
         {
-            figures.RemoveAt(figureId);
+            _figures.RemoveAt(figureId);
         }
         public double GetTotalArea()
         {
             double area = 0;
-            foreach (Figure f in figures)
+            foreach (Figure f in _figures)
             {
                 area += f.GetArea();
             }
             return area;
         }
-        public List<Figure> Figures { get { return figures; } set { figures = value; } }
+        public List<Figure> Figures { get { return _figures; } set { _figures = value; } }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using ConsoleApp1.DataAccessLayer;
-
+//реализовать суперкласс
 namespace ConsoleApp1.RepositoryManage
 {
     interface IRepository
