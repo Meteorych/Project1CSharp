@@ -1,1 +1,9 @@
-﻿
+﻿MainChoice::Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, 4 -- Total Area:, 5 -- Save to Repository;
+DeleteFigure::Input the number of figure you want to delete: 
+EmptyFigureList::List of figures is empty!
+LineColor::Input figure line color: 
+FillColor::Input figure fill color: 
+WrongColor::Wrong color!
+WrongSymbol::Wrong symbol!
+WithArea:: with area:
+TotalArea::Total area:

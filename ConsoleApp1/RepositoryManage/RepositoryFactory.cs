@@ -1,5 +1,8 @@
 ﻿namespace ConsoleApp1.RepositoryManage
 {
+    /// <summary>
+    /// Class that chooses type of repository by used type of data.
+    /// </summary>
     class RepositoryFactory
     {
         private IRepository repositoryData;

@@ -5,8 +5,16 @@ using ConsoleApp1.Figures;
 
 namespace ConsoleApp1.Actions
 {
+    /// <summary>
+    /// Different checks of figures.
+    /// </summary>
     class FiguresCheck
     {
+        /// <summary>
+        /// Checking if triangle is rectangle.
+        /// </summary>
+        /// <param name="triangle">Checked triangle</param>
+        /// <returns>"False" or "true" to the assumption that triangle is rectangle </returns>
         public bool IsRectangle(Triangle triangle)
         {
             double summ = 0;

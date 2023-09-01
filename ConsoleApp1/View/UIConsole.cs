@@ -1,8 +1,6 @@
 ﻿using ConsoleApp1.Actions;
 using ConsoleApp1.Figures;
 using ConsoleApp1.RepositoryManage;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace ConsoleApp1.View
@@ -17,13 +15,13 @@ namespace ConsoleApp1.View
 
         /// <summary>
         /// The user is given the choice between 5 options (Add figure, delete figure, show figure, total area of figures, save to repository)
+        /// <exception name = "FormatException">Exception is called when you type wrong symbol into console</exception>
         /// </summary>
         public override void ActionChoice()
         {
             while (_endProgram == false)
             {
-                Console.WriteLine("Choose operations: 1 -- Add Figure, 2 -- Delete Figure, 3 -- Show figures, " +
-                    "4 -- Total Area:, 5 -- Save to Repository;");
+                Console.WriteLine(_keyPhrases["MainChoice"]);
                 Actions.Action action = new();
                 try
                 {
@@ -36,7 +34,7 @@ namespace ConsoleApp1.View
                             _figuresList.Add(action.FigureCreating(lineColor, fillColor));
                             break;
                         case 2:
-                            Console.WriteLine("Input the number of figure you want to delete: ");
+                            Console.WriteLine(_keyPhrases["DeleteFigure"]);
                             int figureId = Convert.ToInt32(Console.ReadLine());
                             _figuresList.Remove(figureId);
                             break;
@@ -45,16 +43,23 @@ namespace ConsoleApp1.View
                             {
                                 foreach (Figure f in _figuresList.Figures)
                                 {
-                                    Console.WriteLine(f.ToString() + " with area:" + f.GetArea().ToString());
+                                    Console.WriteLine(f.ToString() + _keyPhrases["WithArea"] + f.GetArea().ToString());
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("List of figures is empty!");
+                                Console.WriteLine();
                             }
                             break;
                         case 4:
-                            Console.WriteLine("Total area:" + _figuresList.GetTotalArea());
+                            if (_figuresList.GetTotalArea() != 0)
+                            {
+                                Console.WriteLine(_keyPhrases["TotalArea"] + _figuresList.GetTotalArea());
+                            }
+                            else
+                            {
+                                Console.WriteLine(_keyPhrases["EmptyFigureList"]);
+                            }
                             break;
                         case 5:
                             RepositoryData = _figuresList.Save(RepositoryData);
@@ -67,24 +72,24 @@ namespace ConsoleApp1.View
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("Wrong Symbol!");
+                    Console.WriteLine(_keyPhrases["WrongSymbol"]);
                 }
             }
         }
         /// <summary>
         /// Choice of line or fill color for figure
         /// </summary>
-        /// <param name="typeOfData"></param>
+        /// <param name="typeOfData">Выбор какой тип даты вы хотите получить</param>
         /// <returns>Chosen color</returns>
         public override Color ColorChoice(bool typeOfData)
         {
             if (typeOfData is true)
             {
-                Console.WriteLine("Input figure line color: ");
+                Console.WriteLine(_keyPhrases["LineColor"]);
             }
             else if (typeOfData is false)
             {
-                Console.WriteLine("Input figure fill color: ");
+                Console.WriteLine(_keyPhrases["FillColor"]);
             }
             try
             {
@@ -100,7 +105,7 @@ namespace ConsoleApp1.View
             }
             catch (FormatException)
             {
-                Console.WriteLine("Wrong color!");
+                Console.WriteLine(_keyPhrases["WrongColor"]);
                 throw;
             }
         }

@@ -17,7 +17,6 @@ namespace Program
             {
                 Figures = DALParser.CreateIsntance(repositoryData.Data)
             };
-            //Весь хардкод в константы, хранящие0ся в словарике
             new UserInterfaceConsole(figures, repositoryData, keyPhrases).ActionChoice();
         } 
     }

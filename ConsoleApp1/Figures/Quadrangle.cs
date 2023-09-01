@@ -4,6 +4,9 @@ using System.Drawing;
 
 namespace ConsoleApp1.Figures
 {
+    /// <summary>
+    /// Quadrangle figure.
+    /// </summary>
     class Quadrangle : Figure
     {
         private Vertex.Point[] _vertices;
@@ -33,7 +36,9 @@ namespace ConsoleApp1.Figures
             return _sides[0] * _sides[1];
         }
     }
-
+    /// <summary>
+    /// Square figure.
+    /// </summary>
     class Square : Quadrangle
     {
 

@@ -3,7 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace ConsoleApp1.Figures
 {
-    //Создание объекта треугольник с помощью наследуемого класса от родителького класса Figure
+    /// <summary>
+    /// Triangle figure.
+    /// </summary>
     class Triangle : Figure
     {
 
@@ -18,7 +20,10 @@ namespace ConsoleApp1.Figures
             Vertices = vertices;
         }
 
-        //Расчёт длины сторон
+        /// <summary>
+        /// Calculating the length of each side.
+        /// </summary>
+        /// <returns>List with lenghts of sides.</returns>
         public List<double> Sides()
         {
             List<double> sides = new List<double>();
@@ -30,7 +35,10 @@ namespace ConsoleApp1.Figures
             return sides;
         }
 
-        //перегруженная из родительского класса фукнция, возвращающая площадь треугольника
+        /// <summary>
+        /// Calculating area of triangle.
+        /// </summary>
+        /// <returns>Area of triangle</returns>
         public override double GetArea()
         {
             List<double> sides = Sides();
@@ -39,6 +47,9 @@ namespace ConsoleApp1.Figures
     }
     class RectangularTriangle : Triangle
     {
+        /// <summary>
+        /// Rectangelar triangle figure.
+        /// </summary>
         public RectangularTriangle(Vertex.Point[] vertices, Color lineColor, Color fillColor) : base(vertices, lineColor, fillColor)
         {
 
