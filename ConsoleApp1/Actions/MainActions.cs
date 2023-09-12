@@ -30,20 +30,8 @@ namespace ConsoleApp1.Actions
             return numOfVertices;
         }
 
-        public Figure FigureCreating(Color lineColor, Color fillColor)
+        public Figure FigureCreating(Color lineColor, Color fillColor, string coordinates)
         {
-            Console.WriteLine("Input coordinates of vertex in format like \"12,24,15\": ");
-            string? coordinates;
-            do
-            {
-                coordinates = Console.ReadLine();
-            } while (string.IsNullOrEmpty(coordinates));
-
-            Regex regex = new(@"[^0-9,]");
-            if (regex.Matches(coordinates).Count != 0 || coordinates.Length == 0 || coordinates.Length == 1)
-            {
-                throw new FormatException("Wrong Format of coordinates");
-            }
 
             int numOfVertices = CalcNumOfVertices(coordinates);
 

@@ -18,6 +18,7 @@ namespace ConsoleApp1.View
             _keyPhrases = keyPhrases;
         }
         public IRepository RepositoryData { get; set; }
+        public abstract string CoordinatesInput();
         public abstract void ActionChoice();
         public abstract Color ColorChoice(bool typeOfData);
         public bool EndProgram { get { return _endProgram; } }

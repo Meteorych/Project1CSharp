@@ -7,3 +7,5 @@ WrongColor::Wrong color!
 WrongSymbol::Wrong symbol!
 WithArea:: with area:
 TotalArea::Total area:
+CoordinatesInputPhrase::Input coordinates of vertex in format like \"12,24,15\": 
+FromatExceptionPhrase::Wrong Format of coordinates!

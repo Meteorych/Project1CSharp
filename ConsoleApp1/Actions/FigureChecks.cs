@@ -28,11 +28,8 @@ namespace ConsoleApp1.Actions
                     summ += Math.Pow(side, 2);
                 }
             }
-            if (summ == Math.Pow(max_side, 2))
-            {
-                return true;
-            }
-            else { return false; }
+
+            return (Math.Abs(summ - Math.Pow(max_side, 2)) < double.Epsilon);
         }
     }
 }

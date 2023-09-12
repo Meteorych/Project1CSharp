@@ -2,6 +2,7 @@
 using ConsoleApp1.Figures;
 using ConsoleApp1.RepositoryManage;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp1.View
 {
@@ -31,7 +32,7 @@ namespace ConsoleApp1.View
                         case 1:
                             Color lineColor = ColorChoice(true);
                             Color fillColor = ColorChoice(false);
-                            _figuresList.Add(action.FigureCreating(lineColor, fillColor));
+                            _figuresList.Add(action.FigureCreating(lineColor, fillColor, CoordinatesInput()));
                             break;
                         case 2:
                             Console.WriteLine(_keyPhrases["DeleteFigure"]);
@@ -74,6 +75,31 @@ namespace ConsoleApp1.View
                 {
                     Console.WriteLine(_keyPhrases["WrongSymbol"]);
                 }
+            }
+        }
+        /// <summary>
+        /// Input of coordinates for some figure
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="FormatException"></exception>
+        public override string CoordinatesInput()
+        {
+
+            Console.WriteLine(_keyPhrases["CoordinatesInputPhrase"]);
+            string? coordinates;
+            do
+            {
+                coordinates = Console.ReadLine();
+            } while (string.IsNullOrEmpty(coordinates));
+
+            Regex regex = new(@"[^0-9,]");
+            if (regex.Matches(coordinates).Count != 0 || coordinates.Length == 0 || coordinates.Length == 1)
+            {
+                throw new FormatException(_keyPhrases["FromatExceptionPhrase"]);
+            }
+            else
+            {
+                return coordinates;
             }
         }
         /// <summary>
