@@ -56,7 +56,7 @@ namespace ConsoleApp1.DataAccessLayer
             {
                 //Converting of vertices
                 PointJSON[] vertices = new PointJSON[figure.Vertices.Length];
-                for (int i = 0; i <= figure.Vertices.Length; i++)
+                for (int i = 0; i < figure.Vertices.Length; i++)
                 {
                     vertices[i] = new PointJSON(figure.Vertices[i].Coordinates);
                 }
