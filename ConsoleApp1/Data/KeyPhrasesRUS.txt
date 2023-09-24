@@ -8,4 +8,4 @@ WrongSymbol::Неправильный символ!
 WithArea:: с площадью:
 TotalArea::Общая площадь:
 CoordinatesInputPhrase::Введите координаты вершины в формате \"12,24,15\":
-FromatExceptionPhrase::Неправильный формат координат!
+FormatExceptionPhrase::Неправильный формат координат!

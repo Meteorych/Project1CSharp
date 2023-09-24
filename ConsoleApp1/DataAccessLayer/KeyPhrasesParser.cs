@@ -7,7 +7,7 @@ namespace ConsoleApp1.DataAccessLayer
     class KeyPhrasesParser
     {
 
-        private Dictionary<string, string> _keyPhrases = new();
+        private readonly Dictionary<string, string> _keyPhrases = new();
 
         public KeyPhrasesParser() 
         {

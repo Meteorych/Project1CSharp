@@ -95,7 +95,7 @@ namespace ConsoleApp1.View
             Regex regex = new(@"[^0-9,]");
             if (regex.Matches(coordinates).Count != 0 || coordinates.Length == 0 || coordinates.Length == 1)
             {
-                throw new FormatException(_keyPhrases["FromatExceptionPhrase"]);
+                throw new FormatException(_keyPhrases["FormatExceptionPhrase"]);
             }
             else
             {
