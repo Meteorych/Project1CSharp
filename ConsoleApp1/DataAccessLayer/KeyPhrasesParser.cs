@@ -11,7 +11,7 @@ namespace ConsoleApp1.DataAccessLayer
 
         public KeyPhrasesParser() 
         {
-            string fileName = ChoiceOfFile();
+            var fileName = ChoiceOfFile();
             IEnumerable<string> keyPhrasesString = File.ReadLines(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Data\", fileName));
             foreach (string keyPhrase in keyPhrasesString) 
             {
@@ -22,20 +22,13 @@ namespace ConsoleApp1.DataAccessLayer
         /// Choice of program language.
         /// </summary>
         /// <returns>Name of file with keyphrases</returns>
-        static public string ChoiceOfFile()
+        public static string ChoiceOfFile()
         {
             Console.WriteLine("1 -- eng, 2 -- rus");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            var choice = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
-            if (choice == 1) 
-            {
-                return "KeyPhrases.txt";
-            }
-            else
-            {
-                return "KeyPhrasesRUS.txt";
-            }
+            return choice == 1 ? "KeyPhrases.txt" : "KeyPhrasesRUS.txt";
         }
-        public Dictionary<string, string> KeyPhrases { get { return _keyPhrases; } }
+        public Dictionary<string, string> KeyPhrases => _keyPhrases;
     }
 }

@@ -15,7 +15,7 @@ namespace Program
             IRepository repositoryData = new RepositoryFactory(fileName).RepositoryData;
             FiguresManager figures = new()
             {
-                Figures = DALParser.CreateIsntance(repositoryData.Data)
+                Figures = DALParser.CreateInstance(repositoryData.Data)
             };
             new UserInterfaceConsole(figures, repositoryData, keyPhrases).ActionChoice();
         } 

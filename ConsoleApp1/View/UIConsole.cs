@@ -42,7 +42,7 @@ namespace ConsoleApp1.View
                         case 3:
                             if (_figuresList.Figures != null)
                             {
-                                foreach (Figure f in _figuresList.Figures)
+                                foreach (var f in _figuresList.Figures)
                                 {
                                     Console.WriteLine(f.ToString() + _keyPhrases["WithArea"] + f.GetArea().ToString());
                                 }
@@ -109,7 +109,7 @@ namespace ConsoleApp1.View
         /// <returns>Chosen color</returns>
         public override Color ColorChoice(bool typeOfData)
         {
-            if (typeOfData is true)
+            if (typeOfData)
             {
                 Console.WriteLine(_keyPhrases["LineColor"]);
             }

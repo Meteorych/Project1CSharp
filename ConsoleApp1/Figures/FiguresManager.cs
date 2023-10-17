@@ -24,7 +24,7 @@ namespace ConsoleApp1.Figures
         /// <returns>Repository with new data</returns>
         public IRepository Save(IRepository data)
         {
-            data.Data = DALParser.FromIsntanceToDAL(_figures);
+            data.Data = DALParser.FromInstanceToDal(_figures);
             return data;
         }
         /// <summary>
